@@ -7,6 +7,7 @@ import imageio
 import cv2
 import matplotlib.pyplot as plt
 import bris
+import Detection2
 import os
 
 widthUser = ctypes.windll.user32.GetSystemMetrics(0)
@@ -47,6 +48,10 @@ def brisure():
         fullfilename = os.path.join(piece_directory, file)
         img_temp = Image.open(fullfilename)
         img_temp.show()
+
+def Detection():
+    Detection2.Detection(filename)
+
 fenetre = Tk(className='Puzzle resolver')
 
 bg = '#FA8072'
@@ -58,7 +63,6 @@ fenetre.geometry(str(ws)+"x"+str(hs))
 #image = PhotoImage(file="Pieces/piece__0.png")
 canvas = Canvas(fenetre, width=ws, height=hs,bg= bg)
 
-Menu = PhotoImage(file="Image/piece1.gif")
 image_original = canvas.create_image(100,100,image="")
 
 picture_label = Label(bg=bg)
@@ -73,9 +77,13 @@ button_exit = Button(fenetre,
 button_brisure = Button(fenetre,
                         text = "Break",
                         command = brisure)
+button_reconnaissance = Button(fenetre,
+                        text = "Find",
+                        command = Detection)
 button_explore.place(x=0,y=0)
 button_exit.place(x=ws-30,y=0)
 button_brisure.pack()
+button_reconnaissance.pack()
 
 #canvas.bind("<Button-1>", Clic_Gauche)
 canvas.pack()
